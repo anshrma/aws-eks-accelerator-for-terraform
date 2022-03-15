@@ -120,7 +120,7 @@ tolerations: []
 affinity: {}
 
 annotations: {}
-# iam.amazonaws.com/role: arn:aws:iam::123456789012:role/role-for-fluent-bit
+# iam.amazonaws.com/role: arn:${aws_partition_id}:iam::123456789012:role/role-for-fluent-bit
 
 env: []
 

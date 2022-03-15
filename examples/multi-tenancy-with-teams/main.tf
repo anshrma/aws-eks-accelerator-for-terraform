@@ -25,6 +25,8 @@ terraform {
   }
 }
 
+data "aws_partition" "current" {}
+
 data "aws_region" "current" {}
 
 data "aws_availability_zones" "available" {}
@@ -143,8 +145,8 @@ module "aws-eks-accelerator-for-terraform" {
     admin-team-1 = {
       ## Users Example:
       # users = [
-      #   "arn:aws:iam::<ACCOUNT_ID>:user/<USERNAME>",
-      #   "arn:aws:iam::<ACCOUNT_ID>:role/<ROLE_NAME>"
+      #   "arn:<AWS_PARTITION>:iam::<ACCOUNT_ID>:user/<USERNAME>",
+      #   "arn:<AWS_PARTITION>:iam::<ACCOUNT_ID>:role/<ROLE_NAME>"
       # ]
       users = [
       ]
@@ -176,8 +178,8 @@ module "aws-eks-accelerator-for-terraform" {
       manifests_dir = "./manifests-team-red"
       ## Users Example:
       # users = [
-      #   "arn:aws:iam::<ACCOUNT_ID>:user/<USERNAME>",
-      #   "arn:aws:iam::<ACCOUNT_ID>:role/<ROLE_NAME>"
+      #   "arn:<AWS_PARTITION>:iam::<ACCOUNT_ID>:user/<USERNAME>",
+      #   "arn:<AWS_PARTITION>:iam::<ACCOUNT_ID>:role/<ROLE_NAME>"
       # ]
     }
 
@@ -199,8 +201,8 @@ module "aws-eks-accelerator-for-terraform" {
       manifests_dir = "./manifests-team-blue"
       ## Users Example:
       # users = [
-      #   "arn:aws:iam::<ACCOUNT_ID>:user/<USERNAME>",
-      #   "arn:aws:iam::<ACCOUNT_ID>:role/<ROLE_NAME>"
+      #   "arn:<AWS_PARTITION>:iam::<ACCOUNT_ID>:user/<USERNAME>",
+      #   "arn:<AWS_PARTITION>:iam::<ACCOUNT_ID>:role/<ROLE_NAME>"
       # ]
     }
   }

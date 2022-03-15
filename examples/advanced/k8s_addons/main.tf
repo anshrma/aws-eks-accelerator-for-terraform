@@ -21,6 +21,8 @@ terraform {
   }
 }
 
+data "aws_partition" "current" {}
+
 data "aws_region" "current" {}
 
 data "aws_availability_zones" "available" {}
@@ -355,7 +357,8 @@ module "kubernetes-addons" {
     create_namespace                          = true
     values = [templatefile("${path.module}/helm_values/aws-for-fluentbit-values.yaml", {
       region                          = data.aws_region.current.name,
-      aws_for_fluent_bit_cw_log_group = "/${local.eks_cluster_id}/worker-fluentbit-logs"
+      aws_for_fluent_bit_cw_log_group = "/${local.eks_cluster_id}/worker-fluentbit-logs",
+      aws_partition_id                = data.aws_partition.current.id
     })]
     set = [
       {
