@@ -121,8 +121,6 @@ module "aws-eks-accelerator-for-terraform" {
       subnet_ids      = module.aws_vpc.private_subnets
     }
   }
-
-  # depends_on = [module.aws_vpc]
 }
 
 module "kubernetes-addons" {
@@ -138,9 +136,4 @@ module "kubernetes-addons" {
   enable_aws_load_balancer_controller = true
   enable_metrics_server               = true
   enable_cluster_autoscaler           = true
-
-  depends_on = [
-    module.aws-eks-accelerator-for-terraform.managed_node_groups,
-    module.aws_vpc
-  ]
 }
